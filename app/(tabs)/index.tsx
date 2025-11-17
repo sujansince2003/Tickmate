@@ -7,6 +7,9 @@ export default function Index() {
       <Text>Hello this is sujagfgn</Text>
       <Link href="/about">About</Link>
       <Link href="/product">Product</Link>
+      <Link href={{ pathname: "/profile", params: { name: "sujan khatri" } }}>
+        View profile
+      </Link>
       {/* <Stack.Screen name="about" options={{ title: "About me" }} /> */}
     </View>
   );
