@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const about = () => {
+const settings = () => {
   return (
     <View>
-      <Text>this is about page</Text>
+      <Text>settings</Text>
     </View>
   );
 };
 
-export default about;
+export default settings;
