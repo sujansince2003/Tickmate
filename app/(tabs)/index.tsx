@@ -1,21 +1,25 @@
 import { createHomeStyles } from "@/assets/styles/home.style";
 import Header from "@/components/Header";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import TodoInput from "@/components/TodoInput";
+import TodoItem from "@/components/TodoItem";
+import { api } from "@/convex/_generated/api";
 import { useTheme } from "@/hooks/useTheme";
+import { useQuery } from "convex/react";
 import { LinearGradient } from "expo-linear-gradient";
-import {
-  Keyboard,
-  Pressable,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, Keyboard, Pressable, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const { toggleDarkMode, colors } = useTheme();
   const homeStyles = createHomeStyles(colors);
+  const todos = useQuery(api.todos.getTodos);
 
+  const isLoading = todos === undefined;
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <LinearGradient
       colors={colors.gradients.background}
@@ -30,9 +34,21 @@ export default function Index() {
         <SafeAreaView style={homeStyles.safeArea}>
           <Header homeStyles={homeStyles} />
           <TodoInput />
-          <TouchableOpacity onPress={toggleDarkMode}>
+
+          {/* {todos &&
+            todos?.map((todo) => <TodoItem key={todo._id} todo={todo} />)} */}
+          {/* better to use FlatList then mapping items */}
+          {/* <TouchableOpacity onPress={toggleDarkMode}>
             <Text>Toggle Dark Mode</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+
+          <FlatList
+            data={todos}
+            renderItem={({ item }) => <TodoItem key={item._id} todo={item} />}
+            keyExtractor={(item) => item._id.toString()}
+            style={homeStyles.todoList}
+            contentContainerStyle={homeStyles.todoListContent}
+          />
         </SafeAreaView>
       </Pressable>
     </LinearGradient>
