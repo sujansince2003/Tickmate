@@ -1,23 +1,40 @@
+import { createHomeStyles } from "@/assets/styles/home.style";
+import Header from "@/components/Header";
+import TodoInput from "@/components/TodoInput";
 import { useTheme } from "@/hooks/useTheme";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  Keyboard,
+  Pressable,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function Index() {
-  const { toggleDarkMode } = useTheme();
+  const { toggleDarkMode, colors } = useTheme();
+  const homeStyles = createHomeStyles(colors);
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>Toggle Dark Mode</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={homeStyles.container}
+    >
+      <StatusBar barStyle={colors.statusBarStyle} />
+      <Pressable
+        style={{ flex: 1 }}
+        onPress={Keyboard.dismiss}
+        accessible={false}
+      >
+        <SafeAreaView style={homeStyles.safeArea}>
+          <Header homeStyles={homeStyles} />
+          <TodoInput />
+          <TouchableOpacity onPress={toggleDarkMode}>
+            <Text>Toggle Dark Mode</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </Pressable>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "red",
-  },
-});
