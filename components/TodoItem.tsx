@@ -3,6 +3,7 @@ import { api } from "@/convex/_generated/api";
 import { Doc, Id } from "@/convex/_generated/dataModel";
 import { useTheme } from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
+import { Text } from "@react-navigation/elements";
 import { useMutation } from "convex/react";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -50,6 +51,38 @@ const TodoItem = ({ todo }: { todo: todoType }) => {
             )}
           </LinearGradient>
         </TouchableOpacity>
+        <View style={homeStyles.todoTextContainer}>
+          <Text
+            style={[
+              homeStyles.todoText,
+              todo.isCompleted && {
+                textDecorationLine: "line-through",
+                color: colors.textMuted,
+                opacity: 0.5,
+              },
+            ]}
+          >
+            {todo.title}
+          </Text>
+          <View style={homeStyles.todoActions}>
+            <TouchableOpacity activeOpacity={0.8}>
+              <LinearGradient
+                colors={colors.gradients.warning}
+                style={homeStyles.actionButton}
+              >
+                <Ionicons name="pencil" size={14} color="#fff" />
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8}>
+              <LinearGradient
+                colors={colors.gradients.danger}
+                style={homeStyles.actionButton}
+              >
+                <Ionicons name="trash" size={14} color="#fff" />
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        </View>
       </LinearGradient>
     </View>
   );
