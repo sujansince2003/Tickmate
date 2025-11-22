@@ -1,5 +1,6 @@
 import { createHomeStyles } from "@/assets/styles/home.style";
 import { api } from "@/convex/_generated/api";
+import { Doc } from "@/convex/_generated/dataModel";
 import { useTheme } from "@/hooks/useTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "@react-navigation/elements";
@@ -14,7 +15,7 @@ const Header = ({
   homeStyles: ReturnType<typeof createHomeStyles>;
 }) => {
   const { colors } = useTheme();
-  const todos = useQuery(api.todos.getTodos);
+  const todos = useQuery(api.todos.getTodos) as Doc<"todos">[] | undefined;
   const completedTodos = todos
     ? todos.filter((todo) => todo.isCompleted).length
     : 0;
@@ -22,6 +23,7 @@ const Header = ({
 
   const progressPercentage =
     totaltodos > 0 ? (completedTodos / totaltodos) * 100 : 0;
+
   return (
     <View style={homeStyles.header}>
       <View style={homeStyles.titleContainer}>
