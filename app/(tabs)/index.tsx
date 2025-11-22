@@ -12,7 +12,7 @@ import { FlatList, Keyboard, Pressable, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const { toggleDarkMode, colors } = useTheme();
+  const { colors } = useTheme();
   const homeStyles = createHomeStyles(colors);
   const todos = useQuery(api.todos.getTodos);
 
