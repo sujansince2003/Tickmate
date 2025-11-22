@@ -6,19 +6,19 @@ A beautiful, modern todo application built with React Native and Expo, featuring
 
 ### Core Technologies
 
-- **React Native** (0.81.5) - Cross-platform mobile framework
-- **Expo** (~54.0.23) - Development platform and toolchain
-- **TypeScript** (5.9.2) - Type-safe JavaScript
-- **Expo Router** (~6.0.14) - File-based routing system
+- **React Native** - Cross-platform mobile framework
+- **Expo**  - Development platform and toolchain
+- **TypeScript** - Type-safe JavaScript
+- **Expo Router**  - File-based routing system
 
 ### Backend & Database
 
-- **Convex** (1.29.3) - Real-time backend-as-a-service with automatic database synchronization
+- **Convex** - Real-time backend-as-a-service with automatic database synchronization
 
 ### UI & Styling
 
-- **Expo Linear Gradient** (15.0.7) - Beautiful gradient backgrounds
-- **React Navigation** (7.x) - Navigation library with bottom tabs
+- **Expo Linear Gradient**  - Beautiful gradient backgrounds
+- **React Navigation**  - Navigation library with bottom tabs
 - **Ionicons** (@expo/vector-icons) - Icon library
 - **AsyncStorage** - Persistent local storage for theme preferences
 
@@ -307,9 +307,7 @@ Theme includes:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
 
-[Add your license here]
 
 ## 🙏 Acknowledgments
 
