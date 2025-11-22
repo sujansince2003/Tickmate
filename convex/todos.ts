@@ -51,7 +51,7 @@ export const updateTodo = mutation({
             if (!todo) {
                 throw new ConvexError("Todo not found");
             }
-            await ctx.db.patch(args.id, { title: args.title });
+            await ctx.db.patch(args.id, { title: args.title, isCompleted: false });
         } catch (error) {
             console.error("Failed to update todo:", error);
             throw new ConvexError("Failed to update todo");
