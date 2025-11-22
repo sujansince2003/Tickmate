@@ -1,11 +1,21 @@
 import { defineSchema, defineTable } from "convex/server";
 
-import { v } from "convex/values";
+import { Infer, v } from "convex/values";
 
+
+const todoSchema = v.object({
+    title: v.string(),
+    isCompleted: v.boolean()
+});
 
 export default defineSchema({
-    todos: defineTable({
-        title: v.string(),
-        isCompleted: v.boolean()
-    })
+    todos: defineTable(todoSchema)
 })
+
+
+export type TodoType = Infer<typeof todoSchema>;
+
+
+// or to get  type we can use 
+
+// type todoType = Doc<"todos">;
